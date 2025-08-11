@@ -1,4 +1,5 @@
 import { Hono } from 'hono'
+import { serve } from '@hono/node-server'
 import { randomUUID } from 'crypto'
 import axios from 'axios'
 
@@ -55,4 +56,15 @@ app.post('/api/submit', async (c) => {
   return c.json({ sent: results.length, results })
 })
 
+// For Vercel serverless functions
 export default app
+
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const port = Number(process.env.PORT) || 3000
+  console.log(`Server is running on http://localhost:${port}`)
+  serve({
+    fetch: app.fetch,
+    port
+  })
+}

@@ -1,9 +1,12 @@
 import { Hono } from 'hono'
 import { serve } from '@hono/node-server'
+import { cors } from 'hono/cors'
 import { randomUUID } from 'crypto'
 import axios from 'axios'
 
 const app = new Hono()
+
+app.use(cors())
 
 const NGL_API_URL = 'https://ngl.link/api/submit'
 

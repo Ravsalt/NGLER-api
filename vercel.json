@@ -1,15 +1,15 @@
 {
-  "version": 2,
-  "builds": [
+  "outputDirectory": "dist",
+  "devCommand": "bun run dev",
+  "installCommand": "bun install",
+  "headers": [
     {
-      "src": "index.ts",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.ts"
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Authorization" }
+      ]
     }
   ]
 }

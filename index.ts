@@ -57,62 +57,7 @@ app.post('/api/submit', async (c) => {
 })
 
 app.get('/', (c) => {
-  const html = `
-    <!DOCTYPE html>
-    <html>
-      <head>
-        <title>NGL API Proxy</title>
-        <style>
-          body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f5f5f5;
-          }
-          .container {
-            text-align: center;
-            padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-          }
-          h1 {
-            color: #333;
-          }
-          .spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            border-left-color: #09f;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-          }
-          @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h1>NGL API Proxy is Working! 🚀</h1>
-          <p>Redirecting to GitHub repository...</p>
-          <div class="spinner"></div>
-          <p>If you're not redirected, <a href="https://github.com/Ravsalt/NGLER-api">click here</a>.</p>
-        </div>
-        <script>
-          setTimeout(() => {
-            window.location.href = 'https://github.com/Ravsalt/NGLER-api';
-          }, 3000);
-        </script>
-      </body>
-    </html>
-  `;
-  return c.html(html);
+  return c.json({ message: 'NGLER Working!' });
 })
 
 // For Vercel serverless functions

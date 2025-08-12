@@ -6,7 +6,7 @@ import axios from 'axios'
 
 const app = new Hono()
 
-app.use(cors({
+app.use('*', cors({
   origin: 'https://ngler.vercel.app',
   allowMethods: ['POST', 'GET', 'OPTIONS'],
   allowHeaders: ['Content-Type', 'Authorization']

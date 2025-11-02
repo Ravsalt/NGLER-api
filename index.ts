@@ -48,6 +48,19 @@ app.post('/api/submit', async (c) => {
     return c.json({ error: 'Missing required fields: username, question' }, 400)
   }
 
+  // Check if user exists by making a GET request to their NGL profile page
+  try {
+    const response = await axios.get(`https://ngl.link/${username}`);
+    if (response.data.includes('Could not find user')) {
+      return c.json({ error: 'User not found' }, 404);
+    }
+  } catch (error) {
+    // If the GET request itself fails, it's likely the user doesn't exist or there's a network issue.
+    // For simplicity, we'll treat it as a user not found, but log the error.
+    console.error("Error checking user existence:", error);
+    return c.json({ error: 'User not found or an error occurred during verification.' }, 404);
+  }
+
   const results: any[] = []
 
   for (let i = 0; i < Number(requests); i++) {
